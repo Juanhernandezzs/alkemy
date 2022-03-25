@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 function AddTransaction() {
     const currentDate = function () {
-        return new Date().toISOString().split('T')[0]
+        return new Date()
     }
     const history = useHistory()
     const [input, setInput] = useState({

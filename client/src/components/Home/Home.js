@@ -31,7 +31,9 @@ function Home() {
     }
 
     useEffect(() => {
-        setFilteredData([...data].slice(Math.max(data.length - 10, 0)).reverse())
+        setFilteredData(data.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date);
+        }).slice(0, 10))
     }, [data])
 
     function sortData() {
@@ -58,7 +60,7 @@ function Home() {
                     <button className='bg-blue-500 text-white font-bold py-2 px-4 rounded mt-2 font-mono'>Agregar transacción</button>
                 </Link>
             </div>
-            <div className='shadow-sm overflow-hidden my-8 py-6 rounded-2xl bg-slate-400 w-4/5'>
+            <div className='shadow-sm overflow-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
                 <table>
                     <tr>
                         <th className='font-mono'>Concepto</th>
@@ -66,8 +68,9 @@ function Home() {
                         <th className='font-mono'>Fecha</th>
                         <th className='font-mono'><button className='font-bold' onClick={sortData}>{defaultType ? "Tipo" : sort ? "Tipo +" : "Tipo -"}</button></th>
                     </tr>
-                    {filteredData.map(transaction => <TransactionCard name={transaction.name} amount={transaction.amount} date={transaction.date} type={transaction.type.toUpperCase()} id={transaction.id} />)}
+                    {filteredData.map(transaction => <TransactionCard name={transaction.name} amount={transaction.amount} date={new Date(transaction.date).toISOString().split('T')[0]} type={transaction.type.toUpperCase()} id={transaction.id} />)}
                 </table>
+                <Link to='/all'><button className='bg-blue-500 text-white py-2 px-4 rounded mx-2 my-2 border-slate-500 font-mono'>Ver todo</button></Link>
             </div>
         </div>
     )
