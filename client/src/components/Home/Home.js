@@ -61,12 +61,13 @@ function Home() {
                 </Link>
             </div>
             <div className='shadow-sm overflow-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
+                <p className='font-mono text-xl font-bold'>Últimos 10 movimientos</p>
                 <table>
                     <tr>
-                        <th className='font-mono'>Concepto</th>
-                        <th className='font-mono'>Monto</th>
-                        <th className='font-mono'>Fecha</th>
-                        <th className='font-mono'><button className='font-bold' onClick={sortData}>{defaultType ? "Tipo" : sort ? "Tipo +" : "Tipo -"}</button></th>
+                        <th className='font-mono text-lg'>Concepto</th>
+                        <th className='font-mono text-lg'>Monto</th>
+                        <th className='font-mono text-lg'>Fecha</th>
+                        <th className='font-mono text-lg'><button className='font-bold' onClick={sortData}>{defaultType ? "Tipo" : sort ? "Tipo +" : "Tipo -"}</button></th>
                     </tr>
                     {filteredData.map(transaction => <TransactionCard name={transaction.name} amount={transaction.amount} date={new Date(transaction.date).toISOString().split('T')[0]} type={transaction.type.toUpperCase()} id={transaction.id} />)}
                 </table>

@@ -5,8 +5,10 @@ import TransactionCard from '../TransactionCard/TransactionCard';
 
 function AllTransactions() {
     const [data, setData] = useState([])
+    const [filteredData, setFilteredData] = useState([])
     const [sort, setSort] = useState(false)
     const [defaultType, setDefaultType] = useState(true)
+
     useEffect(() => {
         axios.get("http://localhost:3001/transactions")
             .then(response => {
@@ -16,8 +18,14 @@ function AllTransactions() {
             })
     }, [])
 
+    useEffect(() => {
+        setFilteredData(data.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date);
+        }))
+    }, [data])
+
     function sortData() {
-        data.sort((a, b) => {
+        filteredData.sort((a, b) => {
             if (sort) {
                 if (a.type < b.type) { return -1 }
                 if (a.type > b.type) { return 1 }
@@ -36,16 +44,15 @@ function AllTransactions() {
     return (
         <div className='w-full flex justify-center'>
             <div className='shadow-sm overflow-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
+                <p className='font-mono text-xl font-bold'>Todos los movimientos</p>
                 <table>
                     <tr>
-                        <th className='font-mono'>Concepto</th>
-                        <th className='font-mono'>Monto</th>
-                        <th className='font-mono'>Fecha</th>
-                        <th className='font-mono'><button className='font-bold' onClick={sortData}>{defaultType ? "Tipo" : sort ? "Tipo +" : "Tipo -"}</button></th>
+                        <th className='font-mono text-lg'>Concepto</th>
+                        <th className='font-mono text-lg'>Monto</th>
+                        <th className='font-mono text-lg'>Fecha</th>
+                        <th className='font-mono text-lg'><button className='font-bold' onClick={sortData}>{defaultType ? "Tipo" : sort ? "Tipo +" : "Tipo -"}</button></th>
                     </tr>
-                    {data.sort(function (a, b) {
-                        return new Date(b.date) - new Date(a.date);
-                    }).map(transaction => <TransactionCard name={transaction.name} amount={transaction.amount} date={transaction.date} type={transaction.type.toUpperCase()} id={transaction.id} />)}
+                    {filteredData.map(transaction => <TransactionCard name={transaction.name} amount={transaction.amount} date={transaction.date} type={transaction.type.toUpperCase()} id={transaction.id} />)}
                 </table>
                 <Link to='/'><button className='bg-blue-500 text-white py-2 px-4 rounded mx-2 my-2 border-slate-500 font-mono'>Volver</button></Link>
             </div>
