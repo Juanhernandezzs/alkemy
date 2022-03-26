@@ -52,10 +52,14 @@ function Home() {
         setSort(!sort)
     }
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
+
     return (
         <div className='home bg-zinc-700'>
             <div className='flex flex-col items-center justify-between w-4/5 sm:flex-row'>
-                <p className='mt-6 font-mono text-2xl text-slate-300'>Balance actual: ${totalBalance()}</p>
+                <p className='mt-6 font-mono text-2xl text-slate-300'>Balance actual: ${numberWithCommas(totalBalance())}</p>
                 <Link to='/add'>
                     <button className='bg-blue-500 text-white font-bold py-2 px-4 rounded mt-2 font-mono'>Agregar transacción</button>
                 </Link>
