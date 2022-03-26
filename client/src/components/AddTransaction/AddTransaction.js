@@ -31,18 +31,18 @@ function AddTransaction() {
 
     return (
         <div className='home flex items-center flex-col'>
-            <form className='flex items-center flex-col w-96 bg-white p-6 mt-6 rounded-lg' onSubmit={handleSubmit}>
-                <h1 className='font-mono text-3xl font-bold text-slate-600'>Agregar transacción</h1>
+            <form className='flex items-center flex-col w-80 md:w-96 bg-white p-6 mt-6 rounded-lg' onSubmit={handleSubmit}>
+                <h1 className='font-mono text-lg sm:text-3xl font-bold text-slate-600'>Agregar transacción</h1>
                 <div className='mt-6 flex flex-col items-start w-4/5'>
-                    <label className='font-mono text-lg font-bold text-slate-600'>Concepto</label>
+                    <label className='font-mono text-md sm:text-lg font-bold text-slate-600'>Concepto</label>
                     <input className='text-black border rounded-md pl-2 py-1 font-mono w-full focus:outline-none' onChange={handleInputChange} name="name" type="text" value={input.name} />
                 </div>
                 <div className='mt-6 flex flex-col items-start w-4/5'>
-                    <label className='font-mono text-lg font-bold text-slate-600'>Monto</label>
+                    <label className='font-mono text-md sm:text-lg font-bold text-slate-600'>Monto</label>
                     <input className='text-black border rounded-md pl-2 py-1 font-mono w-full focus:outline-none' onChange={handleInputChange} name="amount" type="number" value={input.amount} />
                 </div>
                 <div className='mt-6 flex flex-col items-start w-4/5'>
-                    <label className='font-mono text-lg font-bold text-slate-600'>Tipo</label>
+                    <label className='font-mono text-md sm:text-lg font-bold text-slate-600'>Tipo</label>
                     <select className='text-black border rounded-md py-1 font-mono w-full focus:outline-none' name='type' onChange={handleInputChange}>
                         <option className='font-mono w-full' value='ingreso'>Ingreso</option>
                         <option className='font-mono w-full' value='egreso'>Egreso</option>

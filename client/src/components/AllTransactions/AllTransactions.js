@@ -43,7 +43,7 @@ function AllTransactions() {
 
     return (
         <div className='w-full flex justify-center'>
-            <div className='shadow-sm overflow-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
+            <div className='shadow-sm overflow-x-scroll sm:overflow-x-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
                 <p className='font-mono text-xl font-bold'>Todos los movimientos</p>
                 <table>
                     <tr>

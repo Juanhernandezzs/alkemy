@@ -54,13 +54,13 @@ function Home() {
 
     return (
         <div className='home bg-zinc-700'>
-            <div className='flex items-center justify-between w-4/5'>
+            <div className='flex flex-col items-center justify-between w-4/5 sm:flex-row'>
                 <p className='mt-6 font-mono text-2xl text-slate-300'>Balance actual: ${totalBalance()}</p>
                 <Link to='/add'>
                     <button className='bg-blue-500 text-white font-bold py-2 px-4 rounded mt-2 font-mono'>Agregar transacción</button>
                 </Link>
             </div>
-            <div className='shadow-sm overflow-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
+            <div className='shadow-sm overflow-x-scroll sm:overflow-x-hidden my-8 pt-6 rounded-2xl bg-slate-400 w-4/5'>
                 <p className='font-mono text-xl font-bold'>Últimos 10 movimientos</p>
                 <table>
                     <tr>
